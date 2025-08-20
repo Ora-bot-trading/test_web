@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ORA IA Premium Design System */
+
+@layer base {
+  :root {
+    /* ORA IA Color Palette - Premium Fintech */
+    --background: 222 29% 4%; /* #0A0A0C - Carbon Black */
+    --foreground: 215 16% 89%; /* #E5E7EB - Elegant Light Gray */
+
+    --card: 223 24% 9%; /* #101622 - Petrol Blue Dark */
+    --card-foreground: 215 16% 89%;
+
+    --popover: 223 24% 9%;
+    --popover-foreground: 215 16% 89%;
+
+    --primary: 215 100% 62%; /* #3A86FF - Electric Blue Premium */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 51% 72%; /* #A6B1E1 - Silver Lavender Metallic */
+    --secondary-foreground: 222 29% 4%;
+
+    --muted: 223 24% 9%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 225 51% 72%;
+    --accent-foreground: 222 29% 4%;
+
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 223 24% 15%;
+    --input: 223 24% 15%;
+    --ring: 215 100% 62%;
+
+    --radius: 1rem;
+
+    /* ORA IA Custom Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(215 100% 62%) 0%, hsl(193 100% 85%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 29% 4%) 0%, hsl(223 24% 9%) 50%, hsl(215 100% 62% / 0.1) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(223 24% 9% / 0.8) 0%, hsl(223 24% 11% / 0.9) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(215 100% 62%) 0%, hsl(215 100% 55%) 100%);
+    
+    --shadow-premium: 0 25px 50px -12px hsl(215 100% 62% / 0.25);
+    --shadow-card: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 10px 10px -5px hsl(0 0% 0% / 0.04);
+    --shadow-glow: 0 0 40px hsl(215 100% 62% / 0.3);
+    
+    --blur-glass: blur(16px);
+    --backdrop-glass: hsl(223 24% 9% / 0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-manrope;
+  }
+}
+
+@layer components {
+  /* Glass morphism effects */
+  .glass-card {
+    background: var(--gradient-card);
+    backdrop-filter: var(--blur-glass);
+    @apply border border-border/20 shadow-lg;
+  }
+  
+  .glass-nav {
+    background: var(--backdrop-glass);
+    backdrop-filter: var(--blur-glass);
+    @apply border-b border-border/20;
+  }
+
+  /* Premium button variants */
+  .btn-hero {
+    background: var(--gradient-button);
+    box-shadow: var(--shadow-premium);
+    @apply text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-glow;
+  }
+  
+  .btn-secondary {
+    background: var(--gradient-card);
+    @apply text-foreground border border-border/40 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 hover:bg-accent/10 hover:scale-105;
+  }
+
+  /* Particle animation container */
+  .particle-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .particle-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-hero);
+    z-index: -1;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted rounded-lg;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-lg;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+
+  /* Animation utilities */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px hsl(215 100% 62% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(215 100% 62% / 0.6); }
+  }
+  
+  @keyframes particle-float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  
+  .animate-particle {
+    animation: particle-float 15s linear infinite;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
